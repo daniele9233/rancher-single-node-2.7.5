@@ -1,0 +1,18 @@
+- name: Install and configure RKE2 on master nodes
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: master1_install
+      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+
+    - role: master1_config
+      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+
+    - role: master1_kubectl
+      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+
+    - role: master1_helm_cert_manager_install
+      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+
