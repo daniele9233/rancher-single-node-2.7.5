@@ -1,8 +1,14 @@
-- name: Install and configure RKE2 on master nodes
-  hosts: all
+---
+- hosts: masters
+  vars:
   become: yes
   gather_facts: no
-
+    master_node_name: inserire hostname della console rancher 
+    master_node_ip: inserire ip della console rancher
+    master_node_user: root
+    rancher_gis_cert_domain: inserire fqdn console rancher --> esempio rancher-gis-cert.assets.giottolabs.com
+    helm_version: inserire versione di helm --> esempio  v3.11.0
+    # Aggiungi ulteriori variabili se necessario
   roles:
     - role: master1_install
       when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
