@@ -1,25 +1,25 @@
 ---
 - hosts: masters
-  vars:
   become: yes
   gather_facts: no
-    master_node_name: inserire hostname della console rancher 
-    master_node_ip: inserire ip della console rancher
-    master_node_user: root
-    rancher_domain: inserire fqdn console rancher --> esempio rancher-gis-cert.assets.giottolabs.com
-    helm_version: inserire versione di helm --> esempio  v3.11.0
-    cert_manager_version: inserire la versione di rancher che vuoi installare ---> esempip "2.7.5"
-    # Aggiungi ulteriori variabili se necessario
+  vars:
+    master_node_name: "master1.isc-lab.giottolabs.com"
+    master_node_ip: "10.116.82.131"
+    master_node_user: "root"
+    rancher_domain: "rancher-kikkoderiso.com"
+    helm_version: "v3.11.0"
+    rancher_version: "2.7.5"
+
   roles:
     - role: master1_install
-      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+      when: "'master1.isc-lab.giottolabs.com' in inventory_hostname"
 
     - role: master1_config
-      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+      when: "'master1.isc-lab.giottolabs.com' in inventory_hostname"
 
     - role: master1_kubectl
-      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+      when: "'master1.isc-lab.giottolabs.com' in inventory_hostname"
 
     - role: master1_helm_cert_manager_install
-      when: "'ip-10-206-149-41.eu-west-1.compute.internal' in inventory_hostname"
+      when: "'master1.isc-lab.giottolabs.com' in inventory_hostname"
 

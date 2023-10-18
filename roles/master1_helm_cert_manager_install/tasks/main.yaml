@@ -32,9 +32,9 @@
         src: /etc/rancher/rke2/rke2.yaml
         dest: /root/.kube/config
 
-  when: inventory_hostname == {{ master_node_name }}
+#  when: inventory_hostname == {{ master_node_name }}
 
 - name: Install Helm and cert-manager on master1
-  when: inventory_hostname == {{ master_node_name }}
+  #  when: inventory_hostname == {{ master_node_name }}
   block:
     - include_tasks: master1_helm_cert_manager_install.yml
