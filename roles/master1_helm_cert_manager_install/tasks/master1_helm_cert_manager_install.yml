@@ -13,8 +13,14 @@
 - name: Update Helm repositories
   command: helm repo update
 
+- name: kube permission
+  command:  chmod 600 /root/.kube/config
+
+- name: Wait for Rancher to be ready
+  command: sleep 60 
+
 - name: Install cert-manager
-  command: helm install rancher rancher-stable/rancher --version {{ rancher_version }} --namespace cattle-system --set hostname={{ rancher_domain }} --set ingress.tls.source=secret --set ingress.tls.secretName=tls-rancher-ingress --set bootstrapPassword=DanielE9233??
+  command: helm install rancher rancher-stable/rancher --namespace cattle-system --set hostname={{ rancher_domain }} --set ingress.tls.source=secret --set ingress.tls.secretName=tls-rancher-ingress --set bootstrapPassword=DanielE9233??
   
    #- name: Wait for rke2-ingress-nginx-controller-admission to be ready
   #command: kubectl -n kube-system wait --for=condition=ready pod -l app.kubernetes.io/instance=rke2-ingress-nginx --timeout=300s
